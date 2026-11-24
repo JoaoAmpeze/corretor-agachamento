@@ -1,0 +1,16 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+.pytest_cache/
+
+# gerados pelo app ao rodar
+models/
+dados/
+resultados/
+uploads/
+
+# sistema
+.DS_Store
+Thumbs.db

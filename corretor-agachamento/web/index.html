@@ -1,0 +1,426 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Corretor de Agachamento</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/web/style.css">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='9' fill='%23007aff'/%3E%3Ccircle cx='16' cy='16' r='9' fill='none' stroke='white' stroke-width='3' stroke-dasharray='42 15' stroke-linecap='round'/%3E%3C/svg%3E">
+</head>
+<body>
+<!-- Ícones (estilo SF Symbols) -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-play" viewBox="0 0 24 24"><path d="M8 5.5v13l10.5-6.5z" fill="currentColor"/></symbol>
+  <symbol id="i-chevron" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-som" viewBox="0 0 24 24"><path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z" fill="currentColor"/><path d="M15.5 9a4.5 4.5 0 010 6M18 6.5a8 8 0 010 11" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+  <symbol id="i-mudo" viewBox="0 0 24 24"><path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z" fill="currentColor"/><path d="M16 9.5l5 5M21 9.5l-5 5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+  <symbol id="i-lua" viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 019.5 4a8 8 0 1010.5 10.5z" fill="currentColor"/></symbol>
+  <symbol id="i-sol" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4.2" fill="currentColor"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+  <symbol id="i-camera" viewBox="0 0 24 24"><rect x="3" y="7" width="13" height="10" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M16 10.5l5-3v9l-5-3z" fill="currentColor"/></symbol>
+  <symbol id="i-filme" viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="14" rx="3" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M10 9.3v5.4l4.6-2.7z" fill="currentColor"/></symbol>
+  <symbol id="i-seta-baixo" viewBox="0 0 24 24"><path d="M12 4v13M6.5 12L12 17.5 17.5 12M5 20.5h14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-tronco" viewBox="0 0 24 24"><circle cx="15" cy="4.5" r="2.2" fill="currentColor"/><path d="M14 8l-4 7M10 15l4 5.5M10 15l-3.5 5.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M5 3.5v8" stroke="currentColor" stroke-width="1.5" stroke-dasharray="2 2"/></symbol>
+  <symbol id="i-joelhos" viewBox="0 0 24 24"><path d="M8 4l-1.5 8L8 20M16 4l1.5 8L16 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M3 12h3M21 12h-3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+  <symbol id="i-relogio" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M12 7.5V12l3 2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+  <symbol id="i-lampada" viewBox="0 0 24 24"><path d="M9 18h6M10 21h4M12 3a6 6 0 00-3.5 10.9c.6.5 1 1.2 1 2V16h5v-.1c0-.8.4-1.5 1-2A6 6 0 0012 3z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></symbol>
+  <symbol id="i-lado" viewBox="0 0 32 32"><circle cx="18" cy="6" r="3" fill="currentColor"/><path d="M17 10l-3 8 6 4-1 7M14 18l-4 4 2 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-frente" viewBox="0 0 32 32"><circle cx="16" cy="6" r="3" fill="currentColor"/><path d="M16 10v9M10 12h12M16 19l-5 4 1 6M16 19l5 4-1 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-auto" viewBox="0 0 32 32"><path d="M16 4l2.6 7.4L26 14l-7.4 2.6L16 24l-2.6-7.4L6 14l7.4-2.6z" fill="currentColor"/><circle cx="25" cy="25" r="2.5" fill="currentColor"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-alerta" viewBox="0 0 24 24"><path d="M12 7v6.5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/><circle cx="12" cy="17.3" r="1.6" fill="currentColor"/></symbol>
+  <symbol id="i-seta-cima" viewBox="0 0 24 24"><path d="M12 20V7M6.5 12L12 6.5 17.5 12" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-pessoa" viewBox="0 0 24 24"><circle cx="12" cy="6" r="2.8" fill="currentColor"/><path d="M12 10v5.5M7.5 12.5h9M12 15.5l-3.5 5M12 15.5l3.5 5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></symbol>
+  <symbol id="i-pausa" viewBox="0 0 24 24"><rect x="6.5" y="5" width="4" height="14" rx="1.2" fill="currentColor"/><rect x="13.5" y="5" width="4" height="14" rx="1.2" fill="currentColor"/></symbol>
+  <symbol id="i-parar" viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="12" rx="2.5" fill="currentColor"/></symbol>
+  <symbol id="i-tela-cheia" viewBox="0 0 24 24"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-sair-tela" viewBox="0 0 24 24"><path d="M9 4v5H4M15 4v5h5M9 20v-5H4M15 20v-5h5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-lixo" viewBox="0 0 24 24"><path d="M5 7h14M10 7V5h4v2M7 7l1 12h8l1-12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+</svg>
+
+<header class="barra">
+  <div class="barra-conteudo">
+    <a href="#/inicio" class="marca">
+      <span class="logo" aria-hidden="true"><svg viewBox="0 0 32 32"><circle cx="16" cy="16" r="10" fill="none" stroke="currentColor" stroke-width="3.4" stroke-dasharray="48 15" stroke-linecap="round" transform="rotate(-90 16 16)"/></svg></span>
+      <span>Corretor de Agachamento</span>
+    </a>
+    <nav class="abas-nav" aria-label="Seções">
+      <a href="#/inicio" data-rota="inicio">Início</a>
+      <a href="#/treinar" data-rota="treinar">Treinar</a>
+      <a href="#/guia" data-rota="guia">Como fazer</a>
+      <a href="#/historico" data-rota="historico">Histórico</a>
+    </nav>
+    <div class="barra-acoes">
+      <button class="botao-redondo" id="botao-voz" title="Voz ligada" aria-label="Ligar ou desligar a voz"><svg><use href="#i-som"/></svg></button>
+      <button class="botao-redondo" id="botao-tema" title="Alternar tema" aria-label="Alternar tema claro ou escuro"><svg><use href="#i-lua"/></svg></button>
+    </div>
+  </div>
+</header>
+
+<main id="conteudo">
+
+  <!-- ============================== INÍCIO ============================== -->
+  <section class="tela" id="tela-inicio">
+    <div class="hero">
+      <p class="sobretitulo">Corretor de Agachamento</p>
+      <h1>Seu agachamento.<br><span class="gradiente">Corrigido em tempo real.</span></h1>
+      <p class="hero-texto">A câmera acompanha cada repetição, dá uma nota de 0 a 100 e avisa na hora o que ajustar, mesmo quando você treina sozinho.</p>
+      <div class="hero-acoes">
+        <a class="botao primario" href="#/treinar">Começar treino</a>
+        <a class="link-seta" href="#/guia">Como fazer <svg><use href="#i-chevron"/></svg></a>
+      </div>
+    </div>
+
+    <div class="vitrine">
+      <div class="vitrine-palco">
+        <svg id="hero-boneco" viewBox="0 -45 260 320" aria-hidden="true"></svg>
+        <div class="flutuante f-a"><span class="rotulo">Joelho</span><strong id="vitrine-angulo">175°</strong></div>
+        <div class="flutuante f-b"><span class="ponto-verde"></span><span><strong>Repetição correta</strong><br><span class="rotulo">Nota 96 · Excelente</span></span></div>
+        <div class="flutuante f-c"><svg viewBox="0 0 44 44" class="mini-anel"><circle cx="22" cy="22" r="18"/><circle cx="22" cy="22" r="18" class="valor" style="stroke-dasharray:113;stroke-dashoffset:34"/></svg><span><strong>7 de 10</strong><br><span class="rotulo">Série 2</span></span></div>
+      </div>
+    </div>
+
+    <h2 class="titulo-secao">Seu resumo</h2>
+    <div class="grade-inicio">
+      <article class="cartao cartao-aneis" id="cartao-ultimo"></article>
+      <div class="tiles" id="tiles-inicio"></div>
+    </div>
+
+    <div class="grade-2">
+      <article class="cartao">
+        <div class="cartao-cabeca"><h3>Evolução</h3><span class="sutil">últimos 10 treinos</span></div>
+        <div id="grafico-evolucao-inicio" class="grafico"></div>
+      </article>
+      <article class="cartao">
+        <div class="cartao-cabeca"><h3>Treinos recentes</h3><a class="link-seta pequeno" href="#/historico">Ver todos <svg><use href="#i-chevron"/></svg></a></div>
+        <div class="lista" id="lista-recentes"></div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ============================== TREINAR ============================== -->
+  <section class="tela" id="tela-treinar">
+    <div class="cabeca-tela">
+      <h1>Novo treino.</h1>
+      <p class="sutil">Escolha a meta e a câmera. A contagem começa quando você aparecer de corpo inteiro.</p>
+    </div>
+
+    <h3 class="rotulo-grupo">Meta</h3>
+    <div class="presets" id="presets">
+      <button data-preset="3,10,45" class="ativo"><strong>Clássico</strong><span>3 × 10</span></button>
+      <button data-preset="4,8,60"><strong>Força</strong><span>4 × 8</span></button>
+      <button data-preset="2,15,30"><strong>Resistência</strong><span>2 × 15</span></button>
+      <button data-preset="1,0,0"><strong>Livre</strong><span>sem meta</span></button>
+    </div>
+    <div class="grupo">
+      <div class="linha campo-numero" data-campo="series" data-min="1" data-max="10" data-passo="1">
+        <span>Séries</span>
+        <div class="stepper"><button type="button" data-delta="-1" aria-label="Diminuir">−</button><output>3</output><button type="button" data-delta="1" aria-label="Aumentar">+</button></div>
+      </div>
+      <div class="linha campo-numero" data-campo="repeticoes" data-min="0" data-max="50" data-passo="1">
+        <span>Repetições por série</span>
+        <div class="stepper"><button type="button" data-delta="-1" aria-label="Diminuir">−</button><output>10</output><button type="button" data-delta="1" aria-label="Aumentar">+</button></div>
+      </div>
+      <div class="linha campo-numero" data-campo="descanso" data-min="0" data-max="180" data-passo="15">
+        <span>Descanso entre séries</span>
+        <div class="stepper"><button type="button" data-delta="-1" aria-label="Diminuir">−</button><output>45</output><button type="button" data-delta="1" aria-label="Aumentar">+</button></div>
+      </div>
+    </div>
+    <p class="nota-grupo" id="resumo-meta"></p>
+
+    <h3 class="rotulo-grupo">Câmera</h3>
+    <div class="grupo">
+      <div class="linha">
+        <span>Fonte</span>
+        <div class="segmentado" id="seg-fonte">
+          <button class="ativo" data-fonte="webcam"><svg><use href="#i-camera"/></svg>Webcam</button>
+          <button data-fonte="video"><svg><use href="#i-filme"/></svg>Vídeo</button>
+        </div>
+      </div>
+      <div class="linha" id="fonte-webcam">
+        <span>Webcam</span>
+        <select id="indice-webcam"><option value="0">Padrão (0)</option><option value="1">Câmera 1</option><option value="2">Câmera 2</option></select>
+      </div>
+      <div class="linha linha-alta" id="fonte-video" hidden>
+        <label class="soltar" id="area-upload">
+          <input type="file" id="arquivo-video" accept="video/*" hidden>
+          <svg><use href="#i-filme"/></svg>
+          <strong id="nome-upload">Escolher vídeo</strong>
+          <span class="sutil" id="status-upload">MP4, MOV, AVI ou WEBM, com a pessoa de corpo inteiro</span>
+        </label>
+      </div>
+      <div class="linha">
+        <span>Desempenho</span>
+        <div class="segmentado" id="seg-desempenho">
+          <button data-desempenho="rapido">Rápido</button>
+          <button data-desempenho="equilibrado" class="ativo">Equilibrado</button>
+          <button data-desempenho="preciso">Preciso</button>
+        </div>
+      </div>
+    </div>
+    <p class="nota-grupo" id="nota-desempenho"></p>
+
+    <h3 class="rotulo-grupo">Treinador por voz</h3>
+    <div class="grupo">
+      <div class="linha">
+        <span>Voz</span>
+        <div class="linha-controles">
+          <select id="escolha-voz">
+            <option value="francisca">Francisca (natural)</option>
+            <option value="antonio">Antônio (natural)</option>
+            <option value="navegador">Voz do navegador</option>
+            <option value="off">Sem voz</option>
+          </select>
+          <button class="botao cinza pequeno-botao" id="botao-ouvir" type="button"><svg><use href="#i-som"/></svg>Ouvir</button>
+        </div>
+      </div>
+    </div>
+    <p class="nota-grupo">As vozes naturais precisam de internet na primeira vez que cada frase é falada.</p>
+
+    <h3 class="rotulo-grupo">Posição da câmera</h3>
+    <div class="opcoes-vista" id="opcoes-vista">
+      <button data-vista="auto" class="ativo"><svg><use href="#i-auto"/></svg><strong>Automática</strong><span>detecta sozinho</span></button>
+      <button data-vista="lateral"><svg><use href="#i-lado"/></svg><strong>De lado</strong><span>profundidade e tronco</span></button>
+      <button data-vista="frontal"><svg><use href="#i-frente"/></svg><strong>De frente</strong><span>joelhos</span></button>
+    </div>
+
+    <div class="rodape-acao">
+      <p class="sutil">Câmera na altura do quadril, a 2–3 metros, com boa iluminação.</p>
+      <button class="botao primario grande" id="botao-iniciar"><svg><use href="#i-play"/></svg>Iniciar treino</button>
+    </div>
+  </section>
+
+  <!-- ============================== AO VIVO ============================== -->
+  <section class="tela" id="tela-ao-vivo">
+    <!-- Dois modos: "normal" (vídeo + painel, no visual do app) e "cheio" (tela cheia, para ver de longe).
+         Os dois usam os mesmos dados; o JavaScript preenche os elementos marcados com data-v. -->
+    <div class="ao-vivo" id="ao-vivo">
+      <div class="coluna-video">
+        <div class="area-video" id="palco">
+          <img id="video" alt="Vídeo da câmera com o esqueleto detectado">
+
+          <!-- comum aos dois modos -->
+          <div class="sobreposicao" id="sobreposicao" hidden>
+            <p id="sobre-titulo">Prepare-se</p>
+            <div class="numero-grande" id="sobre-numero">3</div>
+            <p id="sobre-texto"></p>
+            <button class="botao vidro" id="botao-pular" hidden>Pular descanso</button>
+          </div>
+
+          <!-- modo normal: só o status em cima e o botão de tela cheia -->
+          <div class="ilha so-normal">
+            <span class="ponto-ao-vivo"></span><span data-v="status">Ao vivo</span><span class="ilha-sep"></span><span data-v="serie">Série 1 de 3</span><span class="ilha-sep"></span><span class="fps" data-v="fps" title="Quadros analisados por segundo">– fps</span>
+          </div>
+          <button class="botao-hud so-normal canto" data-acao="modo" title="Tela cheia (para ver de longe)" aria-label="Tela cheia"><svg><use href="#i-tela-cheia"/></svg></button>
+
+          <!-- modo tela cheia: números grandes nos cantos -->
+          <div class="hud hud-esq so-cheio">
+            <div class="contador" data-v="contador"><strong data-v="reps">0</strong><span data-v="meta">/ 10</span></div>
+            <div class="hud-serie"><span class="ponto-ao-vivo"></span><span data-v="status">Ao vivo</span><span class="hud-sep">·</span><span data-v="serie">Série 1 de 3</span><span class="hud-sep">·</span><span class="fps" data-v="fps">– fps</span></div>
+          </div>
+          <div class="hud hud-dir so-cheio">
+            <div class="hud-metrica"><span>Acerto</span><strong data-v="acerto">–</strong></div>
+            <div class="hud-metrica"><span>Nota média</span><strong data-v="nota">–</strong></div>
+            <div class="hud-botoes">
+              <button class="botao-hud" data-acao="modo" title="Sair da tela cheia" aria-label="Sair da tela cheia"><svg><use href="#i-sair-tela"/></svg></button>
+              <button class="botao-hud" data-acao="pausar" title="Pausar" aria-label="Pausar"><svg><use href="#i-pausa"/></svg></button>
+              <button class="botao-hud perigo" data-acao="encerrar" title="Encerrar treino" aria-label="Encerrar treino"><svg><use href="#i-parar"/></svg></button>
+            </div>
+          </div>
+          <div class="hud-profundidade so-cheio" aria-label="Profundidade do agachamento">
+            <strong data-v="joelho">–</strong>
+            <div class="hud-trilho"><div class="hud-alvo"></div><div class="hud-valor" data-v="prof-barra"></div></div>
+            <span>joelho</span>
+          </div>
+        </div>
+
+        <!-- modo normal: cartão do treinador embaixo do vídeo -->
+        <article class="cartao treinador so-normal">
+          <div class="treinador-msg">
+            <span class="treinador-icone" data-v="msg-icone"></span>
+            <div>
+              <p class="treinador-titulo" data-v="msg-titulo">Posicione-se</p>
+              <p class="treinador-sub" data-v="msg-sub">Fique de corpo inteiro na frente da câmera.</p>
+            </div>
+          </div>
+          <div class="profundidade">
+            <div class="profundidade-topo"><span>Profundidade</span><strong data-v="joelho">–</strong></div>
+            <div class="profundidade-trilho"><div class="profundidade-valor" data-v="prof-barra"></div><div class="profundidade-alvo"></div></div>
+            <div class="profundidade-escala"><span>Em pé</span><span>Alvo: coxa paralela (100°)</span></div>
+          </div>
+          <div class="medidas" data-v="medidas"></div>
+        </article>
+
+        <!-- modo tela cheia: barra fixa embaixo -->
+        <div class="barra-treino so-cheio">
+          <div class="msg-treino">
+            <span class="msg-ponto" data-v="msg-ponto"></span>
+            <div class="msg-textos">
+              <p class="msg-titulo" data-v="msg-titulo">Posicione-se</p>
+              <p class="msg-sub" data-v="msg-sub">Fique de corpo inteiro na frente da câmera.</p>
+            </div>
+          </div>
+          <div class="lado-barra">
+            <div class="medidas-mini" data-v="medidas-mini"></div>
+            <div class="trilha-reps" data-v="trilha"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- modo normal: painel lateral -->
+      <aside class="painel so-normal">
+        <article class="cartao cartao-reps">
+          <div class="anel-reps">
+            <svg viewBox="0 0 200 200" class="anel">
+              <circle cx="100" cy="100" r="84" class="trilho-anel"/>
+              <circle cx="100" cy="100" r="84" class="progresso-anel" data-v="anel"/>
+            </svg>
+            <div class="anel-centro"><strong data-v="reps">0</strong><span data-v="meta-texto">de 10</span></div>
+          </div>
+          <div class="reps-info">
+            <span class="pilula" data-v="fase">Preparando</span>
+            <div class="duas-metricas">
+              <div><span class="rotulo">Acerto</span><strong data-v="acerto">–</strong></div>
+              <div><span class="rotulo">Nota</span><strong data-v="nota">–</strong></div>
+            </div>
+          </div>
+        </article>
+
+        <article class="cartao">
+          <div class="cartao-cabeca"><h3>Última repetição</h3><span class="nota-badge" data-v="ultima-nota">–</span></div>
+          <div class="criterios" data-v="criterios"><p class="sutil pequeno">A nota de cada articulação aparece quando você terminar a primeira repetição.</p></div>
+        </article>
+
+        <article class="cartao">
+          <div class="cartao-cabeca"><h3>Repetições</h3><span class="legenda-pontos"><i class="ok"></i>correta<i class="erro"></i>com erro</span></div>
+          <div class="trilha-reps quebra" data-v="trilha"></div>
+        </article>
+
+        <div class="controles">
+          <button class="botao cinza" data-acao="pausar">Pausar</button>
+          <button class="botao cinza perigo" data-acao="encerrar">Encerrar</button>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ============================== RESUMO ============================== -->
+  <section class="tela" id="tela-resumo">
+    <div class="cabeca-tela linha-cabeca">
+      <div>
+        <p class="sobretitulo" id="resumo-data"></p>
+        <h1>Resumo do treino.</h1>
+      </div>
+      <div class="acoes">
+        <a class="botao cinza" href="#/historico">Histórico</a>
+        <a class="botao primario" href="#/treinar">Novo treino</a>
+      </div>
+    </div>
+
+    <article class="cartao cartao-aneis grande" id="resumo-aneis"></article>
+    <div class="tiles tiles-4" id="tiles-resumo"></div>
+    <article class="cartao dica" id="resumo-dica"></article>
+    <article class="cartao dica" id="resumo-fadiga" hidden></article>
+
+    <div class="grade-2">
+      <article class="cartao">
+        <div class="cartao-cabeca"><h3>Nota por repetição</h3><span class="legenda-pontos"><i class="ok"></i>correta<i class="erro"></i>com erro</span></div>
+        <div id="grafico-notas" class="grafico"></div>
+      </article>
+      <article class="cartao">
+        <div class="cartao-cabeca"><h3>Erros encontrados</h3></div>
+        <div id="grafico-erros" class="grafico"></div>
+      </article>
+    </div>
+    <article class="cartao">
+      <div class="cartao-cabeca"><h3>Detalhe das repetições</h3><span class="sutil">clique numa repetição para ver cada articulação</span></div>
+      <div class="tabela-rolagem"><table class="tabela" id="tabela-reps"></table></div>
+    </article>
+  </section>
+
+  <!-- ============================== GUIA ============================== -->
+  <section class="tela" id="tela-guia">
+    <div class="cabeca-tela centro">
+      <p class="sobretitulo">Guia do exercício</p>
+      <h1>Agachamento livre.</h1>
+      <p class="sutil">O movimento de referência e as articulações que o app observa em cada repetição.</p>
+    </div>
+    <div class="grade-guia">
+      <article class="cartao boneco-cartao">
+        <svg id="boneco-guia" viewBox="0 -34 260 330" role="img" aria-label="Animação do agachamento correto visto de lado"></svg>
+        <div class="boneco-info">
+          <span class="pilula" id="guia-fase">Em pé</span>
+          <span class="sutil">Joelho <strong id="guia-angulo">175°</strong></span>
+        </div>
+      </article>
+      <article class="cartao">
+        <h3>Passo a passo</h3>
+        <ol class="passos">
+          <li><strong>Posição inicial</strong><span>Pés na largura dos ombros, pontas levemente para fora, peito aberto.</span></li>
+          <li><strong>Descida</strong><span>Leve o quadril para trás e para baixo, como se fosse sentar numa cadeira.</span></li>
+          <li><strong>Profundidade</strong><span>Desça até a coxa ficar paralela ao chão, com o joelho perto de 90°.</span></li>
+          <li><strong>Joelhos</strong><span>Mantenha os joelhos alinhados com a ponta dos pés, sem fechar para dentro.</span></li>
+          <li><strong>Subida</strong><span>Empurre o chão com o pé inteiro e suba controlando o movimento.</span></li>
+        </ol>
+      </article>
+    </div>
+
+    <h2 class="titulo-secao">O que o app avalia</h2>
+    <p class="sutil subtitulo-grupo">15 critérios, usando ombros, quadris, joelhos, tornozelos, calcanhares, pontas dos pés e orelhas.</p>
+    <h3 class="rotulo-grupo">De lado</h3>
+    <div class="criterios-guia">
+      <article class="cartao"><span class="icone-redondo azul"><svg><use href="#i-seta-baixo"/></svg></span><h3>Profundidade</h3><p>Menor ângulo do joelho na repetição.</p><p class="meta">Correto até <strong>100°</strong></p></article>
+      <article class="cartao"><span class="icone-redondo laranja"><svg><use href="#i-tronco"/></svg></span><h3>Tronco</h3><p>Inclinação do tronco em relação à vertical.</p><p class="meta">Correto até <strong>50°</strong></p></article>
+      <article class="cartao"><span class="icone-redondo laranja"><svg><use href="#i-tronco"/></svg></span><h3>Tronco × canela</h3><p>No fundo, o tronco deve ficar quase paralelo à canela.</p><p class="meta">Até <strong>25°</strong> a mais que a canela</p></article>
+      <article class="cartao"><span class="icone-redondo vermelho"><svg><use href="#i-seta-cima"/></svg></span><h3>Quadril antes do peito</h3><p>Na subida, o quadril não pode subir sozinho deitando o tronco: isso sobrecarrega a lombar.</p><p class="meta">Tronco até <strong>12°</strong> além do fundo</p></article>
+      <article class="cartao"><span class="icone-redondo verde"><svg><use href="#i-pessoa"/></svg></span><h3>Peso no meio do pé</h3><p>O meio do tronco deve ficar sobre o meio do pé, sem jogar o peso para a frente ou para trás.</p><p class="meta">Até <strong>0,6</strong> pé fora do centro</p></article>
+      <article class="cartao"><span class="icone-redondo amarelo"><svg><use href="#i-seta-cima"/></svg></span><h3>Calcanhar</h3><p>Compara o calcanhar com a ponta do pé durante o movimento.</p><p class="meta">Deve ficar <strong>no chão</strong></p></article>
+      <article class="cartao"><span class="icone-redondo roxo"><svg><use href="#i-pessoa"/></svg></span><h3>Cabeça</h3><p>Pescoço alinhado com o tronco, sem olhar muito para cima ou para baixo.</p><p class="meta">Até <strong>50°</strong> em relação ao tronco</p></article>
+    </div>
+    <h3 class="rotulo-grupo">De frente</h3>
+    <div class="criterios-guia">
+      <article class="cartao"><span class="icone-redondo roxo"><svg><use href="#i-joelhos"/></svg></span><h3>Joelhos para dentro</h3><p>Distância entre os joelhos comparada à dos tornozelos.</p><p class="meta">Pelo menos <strong>75%</strong></p></article>
+      <article class="cartao"><span class="icone-redondo roxo"><svg><use href="#i-joelhos"/></svg></span><h3>Joelho × ponta do pé</h3><p>Cada joelho deve seguir a linha do quadril até a ponta do pé.</p><p class="meta">Desvio até <strong>20%</strong> da base</p></article>
+      <article class="cartao"><span class="icone-redondo azul"><svg><use href="#i-pessoa"/></svg></span><h3>Simetria</h3><p>Quadris nivelados, quadril no centro dos pés e as duas pernas dobrando igual.</p><p class="meta">Quadril inclinado até <strong>7°</strong></p></article>
+      <article class="cartao"><span class="icone-redondo azul"><svg><use href="#i-frente"/></svg></span><h3>Ombros nivelados</h3><p>A linha dos ombros deve ficar na horizontal.</p><p class="meta">Inclinação até <strong>8°</strong></p></article>
+      <article class="cartao"><span class="icone-redondo azul"><svg><use href="#i-frente"/></svg></span><h3>Base dos pés</h3><p>Distância entre os pés comparada à largura dos ombros.</p><p class="meta">Entre <strong>0,8×</strong> e <strong>2×</strong></p></article>
+    </div>
+    <h3 class="rotulo-grupo">Em qualquer posição</h3>
+    <div class="criterios-guia">
+      <article class="cartao"><span class="icone-redondo verde"><svg><use href="#i-seta-cima"/></svg></span><h3>Extensão no topo</h3><p>Ficar totalmente em pé entre uma repetição e outra.</p><p class="meta">Até <strong>15°</strong> abaixo do seu “em pé”</p></article>
+      <article class="cartao"><span class="icone-redondo vermelho"><svg><use href="#i-alerta"/></svg></span><h3>Controle no fundo</h3><p>Chegar e sair do fundo rápido demais (quique) estressa joelhos e lombar.</p><p class="meta">Até <strong>130°/s</strong></p></article>
+      <article class="cartao"><span class="icone-redondo verde"><svg><use href="#i-relogio"/></svg></span><h3>Ritmo</h3><p>Tempo da descida, sem despencar.</p><p class="meta">Ideal <strong>0,6 s</strong> ou mais (só na nota)</p></article>
+      <article class="cartao"><span class="icone-redondo laranja"><svg><use href="#i-alerta"/></svg></span><h3>Fadiga na série</h3><p>Se a nota ou a profundidade caem no fim da série, o app avisa para parar.</p><p class="meta">Queda de <strong>20 pontos</strong> ou <strong>12°</strong></p></article>
+    </div>
+
+    <article class="cartao como-nota">
+      <h3>Como a nota é calculada</h3>
+      <p>Cada critério recebe de 0 a 100. A nota da repetição combina o <strong>pior critério (60%)</strong> com a <strong>média de todos (40%)</strong>, para que um erro grave não fique escondido. Uma repetição é <strong>correta</strong> quando não tem nenhum erro de técnica.</p>
+      <div class="faixas-nota">
+        <span class="faixa excelente">85–100 Excelente</span><span class="faixa boa">70–84 Boa</span><span class="faixa regular">50–69 Regular</span><span class="faixa ruim">0–49 Precisa melhorar</span>
+      </div>
+    </article>
+  </section>
+
+  <!-- ============================== HISTÓRICO ============================== -->
+  <section class="tela" id="tela-historico">
+    <div class="cabeca-tela">
+      <h1>Histórico.</h1>
+      <p class="sutil">Todos os treinos ficam salvos neste computador.</p>
+    </div>
+    <article class="cartao">
+      <div class="cartao-cabeca"><h3>Evolução</h3></div>
+      <div id="grafico-evolucao" class="grafico"></div>
+    </article>
+    <h3 class="rotulo-grupo">Treinos</h3>
+    <div class="grupo lista" id="lista-historico"></div>
+  </section>
+</main>
+
+<div class="dica-flutuante" id="tooltip" hidden></div>
+<div class="toast" id="toast" hidden></div>
+<script src="/web/app.js"></script>
+</body>
+</html>
