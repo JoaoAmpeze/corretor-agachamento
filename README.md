@@ -10,7 +10,7 @@ Trabalho do componente **Robótica e Visão Computacional**, curso de Ciência d
 
 **Integrantes:** João Ampeze, João Chiarello, Bruno da Costa e José Tourinho
 
-**Vídeo de apresentação:** https://youtu.be/3StWYTjV9DY
+**Vídeo de apresentação:** https://youtu.be/E8kPcGYKOZM
 
 ### Como rodar (resumo)
 
